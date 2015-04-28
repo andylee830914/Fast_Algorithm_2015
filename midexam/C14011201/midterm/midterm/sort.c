@@ -9,27 +9,19 @@
 #include "sort.h"
 #include <stdio.h>
 
-
+void swap(int m,int n)
+{
+	int temp;
+	
+	temp = m;
+	m = n;
+	n = temp;
+}
 
 int sort(int *v,int N){
 	int i;
 	
 	
-	
-	//printf("random:%d,%d\n",random,v[random]);
-	//*N={18,40,31,88,11,90,5,87,93,18};
-	//36,13,87,59,67,12,32,38,27,62,
-	/*v[0]=36;
-	 v[1]=13;
-	 v[2]=87;
-	 v[3]=59;
-	 v[4]=67;
-	 v[5]=12;
-	 v[6]=32;
-	 v[7]=38;
-	 v[8]=27;
-	 v[9]=62;
-	 */
 	for(i=0;i<N;++i){
 		printf("%d,",v[i]);
 	}
@@ -125,4 +117,39 @@ int quicksort(int N,int *v){
 	
 	
 	return *v;
+}
+
+int median(int *v,int N){
+	int median;
+	median=quickmedian(v,N,0,N);
+	printf("\nmedian=%d",median);
+	return median;
+	
+}
+
+int quickmedian(int *v,int total, int initial, int item){
+	int i;
+	int pivot;
+	int mid;
+	int counter=initial;
+	
+	pivot=v[rand() %item-initial];
+	swap(pivot, v[item-1]);
+	mid=total/2;
+	for (i=initial; i<item; i++) {
+		if ((v[initial]<=pivot)) {
+			swap(v[initial], v[counter]);
+			counter++;
+		}
+	}
+	
+	if (counter=mid) {
+		return v[mid];
+	}else if (counter>mid){
+		quickmedian(v, total, initial, counter-1);
+	}else{
+		quickmedian(v, total, counter, item);
+	}
+	
+	return 0;
 }

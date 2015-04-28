@@ -15,4 +15,7 @@
 #endif /* defined(__midterm__sort__) */
 int sort(int *,int );
 int quicksort(int ,int *);
+void swap(int ,int );
+int quickmedian(int *,int,int,int);
+int median(int *,int);
 

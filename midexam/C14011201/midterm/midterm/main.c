@@ -18,7 +18,7 @@ int main() {
     printf("hello midterm \n");
 	
 	srand(time(NULL));
-	N=10;
+	N=11;
 	v=(int *) malloc(N *sizeof(int));
 	printf("ori   ");
 	for(i=0;i<N;++i){
@@ -28,5 +28,6 @@ int main() {
 	
 	
 	sort(v,N);
+	median(v, N);
     return 0;
 }
