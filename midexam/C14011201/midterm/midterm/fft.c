@@ -171,13 +171,13 @@ int butterfly(double *y_r, double *y_i, int N,int c,int n){
         case 3:
             //n = 3;
             //while(n <= N && ((3*N/n)%3)==0){
+			theta1 = -2.0*M_PI/3;
+			wk_r= cos(theta1);
+			wk_i= sin(theta1);
                 for(k=0;k<n/3;k++){
                     theta = -2.0*k*M_PI/n;
-                    theta1 = -2.0*M_PI/3;
                     w_r = cos(theta);
                     w_i = sin(theta);
-                    wk_r= cos(theta1);
-                    wk_i= sin(theta1);
                     //printf("n=%d,w=%f+%f,w2=%f+%f\n",n,w_r,w_i,wk_r,wk_i);
                     
                     for(p=k;p<N;p+=n)
@@ -189,37 +189,37 @@ int butterfly(double *y_r, double *y_i, int N,int c,int n){
                         t_2r= (w_r*w_r-w_i*w_i)*y_r[r]-(w_r*w_i+w_r*w_i)*y_i[r];
                         t_2i= (w_r*w_r-w_i*w_i)*y_i[r]+(w_r*w_i+w_r*w_i)*y_r[r];
                         
-                        
-                        
-                        y_r[r]=y_r[p]
-                        +wk_r*(t_r+t_2r)+wk_i*(t_i-t_2i);
-                        y_i[r]=y_i[p]
-                        +wk_r*(t_i+t_2i)-wk_i*(t_r-t_2r);
-                        
-                        
-                        y_r[q]=y_r[p]
+						
+						
+						y_r[r]=y_r[p]
+						+wk_r*(t_r+t_2r)+wk_i*(t_i-t_2i);
+						y_i[r]=y_i[p]
+						+wk_r*(t_i+t_2i)-wk_i*(t_r-t_2r);
+						
+						y_r[q]=y_r[p]
 						+wk_r*(t_r+t_2r)-wk_i*(t_i-t_2i);//wk^1
 						y_i[q]=y_i[p]
-                        +wk_r*(t_i+t_2i)+wk_i*(t_r-t_2r);
-                        
-                        y_r[p]=y_r[p]+t_r+t_2r;
-                        y_i[p]=y_i[p]+t_i+t_2i;
+						+wk_r*(t_i+t_2i)+wk_i*(t_r-t_2r);
+						
+						y_r[p]=y_r[p]+t_r+t_2r;
+						y_i[p]=y_i[p]+t_i+t_2i;
                     }
                 }
                 //n = n * 3;
-                
+			
             //}
             break;
 		case 5:
 			//n = 3;
 			//while(n <= N && ((3*N/n)%3)==0){
+			theta1 = -2.0*M_PI/5;
+			wk_r= cos(theta1);
+			wk_i= sin(theta1);
 			for(k=0;k<n/5;k++){
 				theta = -2.0*k*M_PI/n;
-				theta1 = -2.0*M_PI/5;
 				w_r = cos(theta);
 				w_i = sin(theta);
-				wk_r= cos(theta1);
-				wk_i= sin(theta1);
+				
 				//printf("n=%d,w=%f+%f,w2=%f+%f\n",n,w_r,w_i,wk_r,wk_i);
 				
 				for(p=k;p<N;p+=n)
@@ -257,7 +257,6 @@ int butterfly(double *y_r, double *y_i, int N,int c,int n){
 					y_i[r]=y_i[p]
 					+wk_r*(t_3i+t_2i)+wk_i*(t_3r-t_2r)
 					+(wk_r*wk_r-wk_i*wk_i)*(t_i+t_4i)+(2*wk_r*wk_i)*(t_r-t_4r);
-					
 					
 					y_r[q]=y_r[p]
 					+wk_r*(t_r+t_4r)-wk_i*(t_i-t_4i)//wk^1
@@ -312,9 +311,6 @@ int groupn(double *x_r,double *x_i,int N,int p){
         x_i[n] = u_i[n];
     }
 	
-    while ((N%p)) {
-		
-    }
     free(u_r);
     free(u_i);
     return 0;
